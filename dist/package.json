@@ -1,0 +1,28 @@
+{
+  "name": "vue-accordion-transpiled",
+  "version": "1.0.0",
+  "description": "Badger-Accordion Component for Vue 2.0",
+  "main": "vue-accordion-transpiled.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmauryLnd/vue-accordion-transpiled.git"
+  },
+  "keywords": [
+    "vue",
+    "accordion",
+    "collapse"
+  ],
+  "author": "Freerk van Zeijl / AmauryLnd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AmauryLnd/vue-accordion-transpiled/issues"
+  },
+  "homepage": "https://github.com/vanderb/vue-badger-accordion#readme",
+  "dependencies": {
+    "badger-accordion": "^1.2.2",
+    "vue": "^2.5.17"
+  }
