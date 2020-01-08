@@ -1,4 +1,4 @@
-declare module 'vue-badger-accordion' {
+declare module 'vue-accordion-transpiled' {
     import Vue from 'vue';
     class BadgerAccordion extends Vue { }
     class BadgerAccordionItem extends Vue { }
