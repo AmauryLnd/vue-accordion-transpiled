@@ -1,5 +1,5 @@
 {
-  "main": "vue-accordion-transpiled.umd.min.js",
+  "main": "vue-accordion-transpiled.common.js",
   "name": "vue-accordion-transpiled",
   "version": "0.1.0",
   "private": true,
