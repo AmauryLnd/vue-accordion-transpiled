@@ -20,27 +20,23 @@ var script = {
   props: {
     options: {
       type: Object,
-
-      default() {
+      default: function () {
         return {};
       }
-
     },
     icons: {
-      default() {
+      default: function () {
         return {
           opened: '-',
           closed: '+'
         };
       }
-
     },
     iconComponent: {
       default: null
     }
   },
-
-  data() {
+  data: function () {
     return {
       accordion: null,
       itemsReady: false,
@@ -49,10 +45,9 @@ var script = {
       children: this.$children
     };
   },
-
   watch: {
     "accordion.states": {
-      handler(states) {
+      handler: function (states) {
         this.calculateAllPanelsHeight();
         this.$children.forEach((child, n) => {
           if (typeof states[n] == 'object') {
@@ -60,12 +55,10 @@ var script = {
           }
         });
       },
-
       deep: true
     }
   },
-
-  created() {
+  created: function () {
     // On child-item rendered initiate badger-accordion
     this.$on('item:ready', () => {
       // Unwrap child-wrapper due issues with badger-accordion
@@ -75,53 +68,42 @@ var script = {
       this.$forceUpdate();
     });
   },
-
-  mounted() {
+  mounted: function () {
     this.$watch(() => {
       return this.children.length;
     }, items => {
       this.rerender();
     });
   },
-
   methods: {
-    init() {
+    init: function () {
       this.accordion.init();
     },
-
-    getState(headerIds = []) {
+    getState: function (headerIds = []) {
       return this.accordion.getState(headerIds);
     },
-
-    open(headerIndex) {
+    open: function (headerIndex) {
       this.accordion.open(headerIndex);
     },
-
-    close(headerIndex) {
+    close: function (headerIndex) {
       this.accordion.close(headerIndex);
     },
-
-    togglePanel(animationAction, headerIndex) {
+    togglePanel: function (animationAction, headerIndex) {
       this.accordion.togglePanel(animationAction, headerIndex);
     },
-
-    openAll() {
+    openAll: function () {
       this.accordion.openAll();
     },
-
-    closeAll() {
+    closeAll: function () {
       this.accordion.closeAll();
     },
-
-    calculateAllPanelsHeight() {
+    calculateAllPanelsHeight: function () {
       this.accordion.calculateAllPanelsHeight();
     },
-
-    calculatePanelHeight(panel) {
+    calculatePanelHeight: function (panel) {
       this.accordion.calculatePanelHeight(panel);
     },
-
-    rerender() {
+    rerender: function () {
       if (!this.rerendering) {
         this.rerendering = true;
         this.show = false;
@@ -133,7 +115,6 @@ var script = {
         });
       }
     }
-
   }
 };
 
@@ -282,61 +263,50 @@ const __vue_component__ = normalizeComponent({
 //
 var script$1 = {
   name: 'BadgerAccordionItem',
-
-  mounted() {
+  mounted: function () {
     // If item rendered emit readyness to parent
     this.$parent.$emit('item:ready');
   },
-
-  data() {
+  data: function () {
     return {
       opened: false
     };
   },
-
   methods: {
-    changeState(state) {
+    changeState: function (state) {
       this.opened = state;
     },
-
-    getIcon() {
+    getIcon: function () {
       return this.icon;
     }
-
   },
   computed: {
-    iconComponent() {
+    iconComponent: function () {
       if (this.$parent.iconComponent) {
         return this.$parent.iconComponent;
       }
 
       return this.iconLoaded;
     },
-
-    iconOpened() {
+    iconOpened: function () {
       return this.$parent.icons ? this.$parent.icons.opened : '';
     },
-
-    iconClosed() {
+    iconClosed: function () {
       return this.$parent.icons ? this.$parent.icons.closed : '';
     },
-
-    icon() {
+    icon: function () {
       return this.opened ? this.iconOpened : this.iconClosed;
     },
-
-    iconLoaded() {
+    iconLoaded: function () {
       return {
         template: '<span>' + this.icon + '</span>'
       };
     }
-
   },
   watch: {
-    opened(newValue) {
+    opened: function (newValue) {
       this.$emit(newValue ? 'open' : 'close');
     }
-
   }
 };
 
@@ -477,7 +447,7 @@ const install = function (Vue) {
 
 
 const plugin = {
-  install
+  install: install
 }; // To auto-install when vue is found
 
 /* global window global */
