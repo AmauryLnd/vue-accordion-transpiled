@@ -84,7 +84,8 @@ var script = {
     init: function () {
       this.accordion.init();
     },
-    getState: function (headerIds = []) {
+    getState: function () {
+      let headerIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       return this.accordion.getState(headerIds);
     },
     open: function (headerIndex) {
@@ -448,7 +449,8 @@ var components = /*#__PURE__*/Object.freeze({
 const install = function (Vue) {
   if (install.installed) return;
   install.installed = true;
-  Object.entries(components).forEach(function ([componentName, component]) {
+  Object.entries(components).forEach(function (_ref) {
+    let [componentName, component] = _ref;
     Vue.component(componentName, component);
   });
 }; // Create module definition for Vue.use()
