@@ -49,7 +49,7 @@ var script = {
     "accordion.states": {
       handler: function (states) {
         this.calculateAllPanelsHeight();
-        this.$children.forEach((child, n) => {
+        this.$children.forEach(function (child, n) {
           if (typeof states[n] == 'object') {
             child.changeState(states[n].state == 'open');
           }
@@ -59,20 +59,25 @@ var script = {
     }
   },
   created: function () {
-    // On child-item rendered initiate badger-accordion
-    this.$on('item:ready', () => {
-      // Unwrap child-wrapper due issues with badger-accordion
-      unwrap(this.$refs.badger.querySelector('.badger-accordion-item')); // Init badger-accordion if child-component is loaded
+    var _this = this;
 
-      this.accordion = new BadgerAccordion(this.$refs.badger, this.options || {});
-      this.$forceUpdate();
+    // On child-item rendered initiate badger-accordion
+    this.$on('item:ready', function () {
+      // Unwrap child-wrapper due issues with badger-accordion
+      unwrap(_this.$refs.badger.querySelector('.badger-accordion-item')); // Init badger-accordion if child-component is loaded
+
+      _this.accordion = new BadgerAccordion(_this.$refs.badger, _this.options || {});
+
+      _this.$forceUpdate();
     });
   },
   mounted: function () {
-    this.$watch(() => {
-      return this.children.length;
-    }, items => {
-      this.rerender();
+    var _this2 = this;
+
+    this.$watch(function () {
+      return _this2.children.length;
+    }, function (items) {
+      _this2.rerender();
     });
   },
   methods: {
@@ -104,13 +109,16 @@ var script = {
       this.accordion.calculatePanelHeight(panel);
     },
     rerender: function () {
+      var _this3 = this;
+
       if (!this.rerendering) {
         this.rerendering = true;
         this.show = false;
-        this.$nextTick(() => {
-          this.show = true;
-          this.$nextTick(() => {
-            this.rerendering = false;
+        this.$nextTick(function () {
+          _this3.show = true;
+
+          _this3.$nextTick(function () {
+            _this3.rerendering = false;
           });
         });
       }
@@ -440,7 +448,7 @@ var components = /*#__PURE__*/Object.freeze({
 const install = function (Vue) {
   if (install.installed) return;
   install.installed = true;
-  Object.entries(components).forEach(([componentName, component]) => {
+  Object.entries(components).forEach(function ([componentName, component]) {
     Vue.component(componentName, component);
   });
 }; // Create module definition for Vue.use()
