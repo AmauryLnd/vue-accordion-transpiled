@@ -34,7 +34,7 @@
     "@vue/cli-service": "^4.1.0",
     "babel-plugin-transform-es2015-shorthand-properties": "^6.24.1",
     "cross-env": "^6.0.3",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "rollup": "^1.27.13",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
